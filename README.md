@@ -114,6 +114,19 @@ Amplify Console will look for a file named [amplify.yml](./amplify.yml) in your 
 
 <details>
 <summary><strong>
+What should the backend architecture look like? <small>(expand to see the answer)</small>
+</strong></summary>
+
+Here is an architecture diagram of what the implementation could look like:
+
+<img src="images/architecture.png"/>
+
+The [backend folder](./backend/) already has an Amazon API Gateway Rest API and an empty AWS Lambda function (HasDogFunction).
+
+</details>
+
+<details>
+<summary><strong>
 Where can I find sample pictures? <small>(expand to see the answer)</small>
 </strong></summary>
 
