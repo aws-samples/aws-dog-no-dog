@@ -117,7 +117,7 @@ Amplify Console will look for a file named [amplify.yml](./amplify.yml) in your 
 Where can I find sample pictures? <small>(expand to see the answer)</small>
 </strong></summary>
 
-You can find sample pictures of dogs in the [pictures](./pictures/) folder.
+You can find sample pictures in the [pictures](./pictures/) folder.
 
 As the frontend doesn't change the resolution of the image and encode it in Base64 before sending it to API Gateway, there is a size limit for pictures. Amazon API Gateway has a [payload limit of 10MB](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) and Base64 encoding has an overhead of 33%. Therefore, you will not be able to send pictures that are larger than 7.5MB.
 
