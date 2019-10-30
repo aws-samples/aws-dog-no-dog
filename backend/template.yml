@@ -6,6 +6,8 @@ Parameters:
   DomainName:
     Type: String
     Default: "*"
+  Environment:
+    Type: String
 
 
 Globals:
@@ -15,6 +17,7 @@ Globals:
     Environment:
       Variables:
         DOMAIN_NAME: !Ref DomainName
+        ENVIRONMENT: !Ref Environment
     Tracing: Active
   Api:
     Cors:
@@ -38,6 +41,7 @@ Resources:
           Properties:
             Path: /
             Method: POST
+
 
 Outputs:
   ApiEndpoint:

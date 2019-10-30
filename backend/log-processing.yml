@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Log processing stack.
+
+
+Parameters:
+  ShardCount:
+    Type: Number
+    Default: 1
+
+  LogPrefix:
+    Type: String
+
+
+Resources:
+  LogProcessingStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      ShardCount: !Ref ShardCount
+
+  AsyncCustomMetrics:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location:
+        ApplicationId: arn:aws:serverlessrepo:us-east-1:374852340823:applications/async-custom-metrics
+        SemanticVersion: 1.7.0
+      Parameters:
+        EventSourceType: Kinesis
+        KinesisStreamArn: !GetAtt LogProcessingStream.Arn
+
+  AutoSetLogGroupRetention:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location:
+        ApplicationId: arn:aws:serverlessrepo:us-east-1:374852340823:applications/auto-set-log-group-retention
+        SemanticVersion: 1.4.0
+      Parameters:
+        RetentionDays: 30
+
+  AutoSubscribeLogGroupToArn:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location:
+        ApplicationId: arn:aws:serverlessrepo:us-east-1:374852340823:applications/auto-subscribe-log-group-to-arn
+        SemanticVersion: 1.11.1
+      Parameters:
+        DestinationArn: !GetAtt LogProcessingStream.Arn
+        ExcludePrefix: AsyncCustomMetrics
+        Prefix: !Ref LogPrefix
+        FilterPattern: '?REPORT ?MONITORING'
+
+
+Outputs:
+  LogProcessingStreamArn:
+    Value: !GetAtt LogProcessingStream.Arn
+    Description: Amazon Kinesis Data Stream used for log processing.

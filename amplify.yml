@@ -9,9 +9,9 @@ version: 1.0
 #       commands:
 #         - |
 #           if [ "${AWS_BRANCH}" = "master" ]; then
-#             make -C backend
+#             make -C backend ENVIRONMENT=prod
 #           else
-#             make -C backend STACK_NAME=dognodog-backend-$AWS_BRANCH
+#             make -C backend ENVIRONMENT=$AWS_BRANCH
 #           fi
 #     postBuild:
 #       commands:
