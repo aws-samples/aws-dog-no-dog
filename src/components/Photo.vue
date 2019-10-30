@@ -5,12 +5,12 @@
     </p>
     <p id="image" v-if="photo">
       <img :src="photo.url" />
-      <span class="stamp" v-if="checkIsDog && isDog"
-        ><i :class="'fas ' + this.dogIcon"></i
-      ></span>
-      <span class="stamp" v-if="checkIsDog && !isDog"
-        ><i class="fas fa-times"></i
-      ></span>
+      <span class="stamp" v-if="checkIsDog && isDog">
+        <i :class="'fas ' + this.dogIcon"></i>
+      </span>
+      <span class="stamp" v-if="checkIsDog && !isDog">
+        <i class="fas fa-times"></i>
+      </span>
       <span v-if="checkIsDog && isDog" class="label">{{ label }}</span>
       <span class="loading" v-if="loading"><i class="fas fa-bone"></i></span>
     </p>
