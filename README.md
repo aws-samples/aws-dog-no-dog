@@ -119,7 +119,9 @@ What should the backend architecture look like? <small>(expand to see the answer
 
 Here is an architecture diagram of what the implementation could look like:
 
-<img src="images/architecture.png"/>
+<p align="center">
+  <img src="images/architecture.png"/>
+</p>
 
 The [backend folder](./backend/) already has an Amazon API Gateway Rest API and an empty AWS Lambda function (HasDogFunction).
 
