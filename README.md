@@ -29,7 +29,7 @@ To install the necessary libraries for Vue.js and get started, you will need to 
 # From the root of this repository
 
 # Install the Vue.js CLI
-npm install -g @vue-cli
+npm install -g @vue/cli
 
 # Install packages for this project
 npm install
