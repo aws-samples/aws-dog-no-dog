@@ -29,7 +29,7 @@ To install the necessary libraries for Vue.js and get started, you will need to 
 # From the root of this repository
 
 # Install the Vue.js CLI
-npm install -g @vue/cli @vue/cli-service
+npm install --global @vue/cli @vue/cli-service
 
 # Install packages for this project
 npm install
@@ -44,19 +44,19 @@ For the backend, you will need to install the [AWS CLI](https://aws.amazon.com/c
 # From the root of this repository
 
 # Deploy log processing infrastructure to generate metrics
-make -C backend log-processing
+make --directory backend log-processing
 
 # Deploy the backend
 # This runs the targets 'package', 'deploy' and 'endpoint' in sequence.
-# Equivalent to 'make -C backend all'. By default, this will deploy to a 'dev'
-# environment.
-make -C backend
+# Equivalent to 'make --directory backend all'. By default, this will deploy to
+# a 'dev' environment.
+make --directory backend
 
 # Run the backend locally
 # This will allow you to test the Amazon API Gateway Rest API and AWS Lambda
 # functions locally. However, if you are using other resources (e.g. Amazon
 # DynamoDB table, Amazon S3 bucket), you should deploy them to AWS first.
-make -C backend local
+make --directory backend local
 ```
 
 ## Hints
