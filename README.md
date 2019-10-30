@@ -38,7 +38,26 @@ npm install
 npm run serve
 ```
 
-You can find the boilerplate for the serverless backend in the [backend folder](./backend/).
+For the backend, you will need to install the [AWS CLI](https://aws.amazon.com/cli/), the [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) and [Make](https://www.gnu.org/software/make/). The backend comes with a Makefile that contains the following targets:
+
+```bash
+# From the root of this repository
+
+# Deploy log processing infrastructure to generate metrics
+make -C backend log-processing
+
+# Deploy the backend
+# This runs the targets 'package', 'deploy' and 'endpoint' in sequence.
+# Equivalent to 'make -C backend all'. By default, this will deploy to a 'dev'
+# environment.
+make -C backend
+
+# Run the backend locally
+# This will allow you to test the Amazon API Gateway Rest API and AWS Lambda
+# functions locally. However, if you are using other resources (e.g. Amazon
+# DynamoDB table, Amazon S3 bucket), you should deploy them to AWS first.
+make -C backend local
+```
 
 ## Hints
 
@@ -75,35 +94,6 @@ You can find more details in the [Getting Started](https://docs.aws.amazon.com/a
 
 <details>
 <summary><strong>
-How can I deploy the backend to AWS? <small>(expand to see the answer)</small>
-</strong></summary>
-
-For the backend, you will need to install the [AWS CLI](https://aws.amazon.com/cli/), the [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) and [Make](https://www.gnu.org/software/make/). The backend comes with a Makefile that contains the following targets:
-
-```bash
-# From the root of this repository
-
-# Deploy log processing infrastructure to generate metrics
-make -C backend log-processing
-
-# Deploy the backend
-# This runs the targets 'package', 'deploy' and 'endpoint' in sequence.
-# Equivalent to 'make -C backend all'.
-make -C backend
-
-# Run the backend locally
-# This will allow you to test the Amazon API Gateway Rest API and AWS Lambda
-# functions locally. However, if you are using other resources (e.g. Amazon
-# DynamoDB table, Amazon S3 bucket), you should deploy them to AWS first.
-make -C backend local
-```
-
-This will deploy a 'dev' environment.
-
-</details>
-
-<details>
-<summary><strong>
 How can I deploy the backend locally? <small>(expand to see the answer)</small>
 </strong></summary>
 
@@ -118,10 +108,20 @@ See [sam local start-api](https://docs.aws.amazon.com/serverless-application-mod
 How can I deploy the frontend and backend at the same time? <small>(expand to see the answer)</small>
 </strong></summary>
 
-Amplify Console will look for a file named `amplify.yml` in your repository. This file can contain instructions to deploy the backend and frontend, as well as [end-to-end testing instructions using Cypress](https://aws.amazon.com/blogs/mobile/run-end-to-end-cypress-tests-for-your-fullstack-ci-cd-deployment-with-amplify-console/).
+Amplify Console will look for a file named [amplify.yml](./amplify.yml) in your repository. This file can contain instructions to deploy the backend and frontend, as well as [end-to-end testing instructions using Cypress](https://aws.amazon.com/blogs/mobile/run-end-to-end-cypress-tests-for-your-fullstack-ci-cd-deployment-with-amplify-console/).
 
 </details>
 
+<details>
+<summary><strong>
+Where can I find sample pictures? <small>(expand to see the answer)</small>
+</strong></summary>
+
+You can find sample pictures of dogs in the [pictures](./pictures/) folder.
+
+As the frontend doesn't change the resolution of the image and encode it in Base64 before sending it to API Gateway, there is a size limit for pictures. Amazon API Gateway has a [payload limit of 10MB](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) and Base64 encoding has an overhead of 33%. Therefore, you will not be able to send pictures that are larger than 7.5MB.
+
+</details>
 
 ## License Summary
 
