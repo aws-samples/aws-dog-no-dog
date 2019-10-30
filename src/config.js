@@ -1,6 +1,6 @@
 // Endpoint for your Amazon API Gateway
-// Change this t
-export const endpoint = "";
+// Change this to your endpoint
+export const endpoint = process.env.VUE_APP_ENDPOINT;
 
 export default {
   endpoint
