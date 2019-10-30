@@ -1,7 +1,7 @@
 ## Dog no Dog
 
 <p align="center">
-  <img src="images/dog-no-dog.jpg" height="300"/>
+  <img src="images/dog-no-dog.jpg"/>
 </p>
 
 Dog no Dog is a sample application to showcase how to build a minimum viable product with serverless technologies on AWS.
