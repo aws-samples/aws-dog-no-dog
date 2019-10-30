@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: "*"
+
+
+Globals:
+  Function:
+    Runtime: python3.7
+    Timeout: 30
+    Environment:
+      Variables:
+        DOMAIN_NAME: !Ref DomainName
+    Tracing: Active
+  Api:
+    Cors:
+      AllowOrigin: !Sub "'${DomainName}'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with'"
+      AllowMethods: "'POST,GET,OPTIONS'"
+    TracingEnabled: true
+
+
+Resources:
+  HasDogFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.has_dog_handler
+      CodeUri: ./src/
+      Policies:
+        - RekognitionLabelsPolicy: {}
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+
+Outputs:
+  ApiEndpoint:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"

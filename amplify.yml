@@ -1,4 +1,20 @@
 version: 1.0
+# env:
+#   variables:
+#       S3_BUCKET: moutschn-src
+# backend:
+#   phases:
+#     build:
+#       commands:
+#         - |
+#           if [ "${AWS_BRANCH}" = "master" ]; then
+#             make -C backend
+#           else
+#             make -C backend STACK_NAME=dognodog-backend-$AWS_BRANCH
+#           fi
+#     postBuild:
+#       commands:
+#         - echo 'VUE_APP_ENDPOINT="'$(make --quiet -C backend endpoint)'"' > .env.production
 frontend:
   phases:
     preBuild:
