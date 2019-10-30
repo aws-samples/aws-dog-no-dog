@@ -23,6 +23,8 @@ If you are new to Serverless applications on AWS or are looking for a more guide
 
 The project consist of a [Vue.js 2](https://vuejs.org/) frontend and boilerplate to create a serverless backend using [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html).
 
+### Frontend
+
 To install the necessary libraries for Vue.js and get started, you will need to have NPM installed and run the following commands:
 
 ```bash
@@ -38,11 +40,27 @@ npm install
 npm run serve
 ```
 
-For the backend, you will need to install the [AWS CLI](https://aws.amazon.com/cli/), the [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) and [Make](https://www.gnu.org/software/make/). The backend comes with a Makefile that contains the following targets:
+For the backend, you will need to install the [AWS CLI](https://aws.amazon.com/cli/), the [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) and [Make](https://www.gnu.org/software/make/).
+
+### S3 bucket
+
+First, you will need to create an S3 bucket.
 
 ```bash
 # From the root of this repository
 
+# Create a new S3 bucket to store code artifacts. Please note that S3 buckets
+# have to be globally unique.
+aws s3api create-bucket --bucket "your-bucket-name"
+```
+
+After that, you should edit [backend/Makefile](backend/Makefile) and [amplify.yml](amplify.yml) to change the S3 Bucket name from "dog-no-dog-artifacts" to your bucket name.
+
+### Backend
+
+The backend comes with a Makefile that contains the following targets:
+
+```bash
 # Deploy log processing infrastructure to generate metrics
 make --directory backend log-processing
 
