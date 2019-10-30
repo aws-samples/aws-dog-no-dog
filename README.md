@@ -1,5 +1,7 @@
 ## Dog no Dog
 
+![Dog no Dog application](./images/dog-no-dog.jpg)
+
 Dog no Dog is a sample application to showcase how to build a minimum viable product with serverless technologies on AWS.
 
 With the Dog no Dog application, users can submit a picture and the backend should check if there is a dog in it. After this, the user has the possibility to leave a feedback if the picture contains a dog or not.
@@ -29,6 +31,9 @@ npm install -g @vue-cli
 
 # Install packages for this project
 npm install
+
+# Run the Vue app locally
+npm run serve
 ```
 
 You can find the boilerplate for the serverless backend in the [backend folder](./backend/).
