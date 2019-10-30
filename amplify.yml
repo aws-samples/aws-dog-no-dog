@@ -1,7 +1,8 @@
 version: 1.0
 # env:
 #   variables:
-#       S3_BUCKET: moutschn-src
+#       # Replace this with an S3 bucket in your account to code artifacts
+#       S3_BUCKET: dog-no-dog-artifacts
 # backend:
 #   phases:
 #     build:

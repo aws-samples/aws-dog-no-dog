@@ -1,4 +1,4 @@
-S3_BUCKET ?= "$(USER)-src"
+S3_BUCKET ?= "dog-no-dog-artifacts"
 STACK_NAME ?= "dognodog-backend"
 
 all: package deploy endpoint

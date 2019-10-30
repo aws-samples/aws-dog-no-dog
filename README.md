@@ -23,7 +23,7 @@ If you are new to Serverless applications on AWS or are looking for a more guide
 What do I need to build on the backend? <small>(expand to see the answer)</small>
 </strong></summary>
 
-There is no formal API definition, but you can find all the API calls made by the frontend in the [api.js file](./frontend/src/backend/api.js) in the frontend.
+There is no formal API definition, but you can find all the API calls made by the frontend in the [api.js file](./src/backend/api.js) in the frontend.
 
 </details>
 
@@ -32,7 +32,7 @@ There is no formal API definition, but you can find all the API calls made by th
 Where can I configure the API endpoint in the frontend? <small>(expand to see the answer)</small>
 </strong></summary>
 
-The API endpoint value is held in the [config.js file](./frontend/src/config.js).
+The API endpoint value is held in the [.env.development](./.env.development) and [.env.production](./.env.production) files.
 
 </details>
 
@@ -51,4 +51,4 @@ You can find more details in the [Getting Started](https://docs.aws.amazon.com/a
 
 ## License Summary
 
-This sample code is made available under the MIT-0 license. See the LICENSE file.
+This sample code is made available under the MIT-0 license. See the [LICENSE file](./LICENSE).
