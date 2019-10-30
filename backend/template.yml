@@ -42,6 +42,28 @@ Resources:
             Path: /
             Method: POST
 
+  FeedbackFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.feedback_handler
+      CodeUri: ./src/
+      Policies:
+        - RekognitionLabelsPolicy: {}
+        - S3CrudPolicy:
+            BucketName: !Ref PhotosBucket
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref PhotosBucket
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /feedback
+            Method: POST
+
+  PhotosBucket:
+    Type: AWS::S3::Bucket
+
 
 Outputs:
   ApiEndpoint:
