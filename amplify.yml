@@ -21,6 +21,7 @@ backend:
           else
             echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=$AWS_BRANCH -C backend endpoint)'"' > .env.production
           fi
+
 frontend:
   phases:
     preBuild:
