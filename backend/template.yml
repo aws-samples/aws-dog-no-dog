@@ -85,6 +85,15 @@ Resources:
                   ["DogNoDog", "Dog", "Environment", "${Environment}", {"id": "m3"}],
                   [{"expression": "100*m3/(m1+m2)", "label": "DogPercentage", "yAxis": "right", "id": "e1"}]
                 ],
+                "yAxis": {
+                  "left": {
+                    "min": 0
+                  },
+                  "right": {
+                    "min": 0,
+                    "max": 100
+                  }
+                },
                 "period": 300,
                 "view": "timeSeries",
                 "stacked": false,
@@ -106,6 +115,15 @@ Resources:
                   ["DogNoDog", "FalseNegative", "Environment", "${Environment}", {"id": "m4"}],
                   [{"expression": "100*m2/(m2+m3+m4)", "label": "MatchPercentage", "yAxis": "right", "id": "e1"}]
                 ],
+                "yAxis": {
+                  "left": {
+                    "min": 0
+                  },
+                  "right": {
+                    "min": 0,
+                    "max": 100
+                  }
+                },
                 "period": 300,
                 "view": "timeSeries",
                 "stacked": false,
