@@ -64,6 +64,77 @@ Resources:
   PhotosBucket:
     Type: AWS::S3::Bucket
 
+  Dashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub "DogNoDog-${Environment}"
+      DashboardBody: !Sub >
+        {
+          "start": "-PT3H",
+          "widgets": [
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 0,
+              "width": 12,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  ["AWS/Lambda", "Invocations", "FunctionName", "${HasDogFunction}", {"id": "m1"}],
+                  ["AWS/Lambda", "Invocations", "FunctionName", "${FeedbackFunction}", {"id": "m2"}],
+                  ["DogNoDog", "Dog", "Environment", "${Environment}", {"id": "m3"}],
+                  [{"expression": "100*m3/(m1+m2)", "label": "DogPercentage", "yAxis": "right", "id": "e1"}]
+                ],
+                "yAxis": {
+                  "left": {
+                    "min": 0
+                  },
+                  "right": {
+                    "min": 0,
+                    "max": 100
+                  }
+                },
+                "period": 300,
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Sum",
+                "title": "Invocations",
+                "region": "${AWS::Region}"
+              }
+            },
+            {
+              "type": "metric",
+              "x": 12,
+              "y": 0,
+              "width": 12,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  ["DogNoDog", "Match", "Environment", "${Environment}", {"id": "m2"}],
+                  ["DogNoDog", "FalsePositive", "Environment", "${Environment}", {"id": "m3"}],
+                  ["DogNoDog", "FalseNegative", "Environment", "${Environment}", {"id": "m4"}],
+                  [{"expression": "100*m2/(m2+m3+m4)", "label": "MatchPercentage", "yAxis": "right", "id": "e1"}]
+                ],
+                "yAxis": {
+                  "left": {
+                    "min": 0
+                  },
+                  "right": {
+                    "min": 0,
+                    "max": 100
+                  }
+                },
+                "period": 300,
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Sum",
+                "title": "Feedback",
+                "region": "${AWS::Region}"
+              }
+            }
+          ]
+        }
+
 
 Outputs:
   ApiEndpoint:
