@@ -81,7 +81,9 @@ Resources:
               "properties": {
                 "metrics": [
                   ["AWS/Lambda", "Invocations", "FunctionName", "${HasDogFunction}", {"id": "m1"}],
-                  ["AWS/Lambda", "Invocations", "FunctionName", "${FeedbackFunction}", {"id": "m2"}]
+                  ["AWS/Lambda", "Invocations", "FunctionName", "${FeedbackFunction}", {"id": "m2"}],
+                  ["DogNoDog", "Dog", "Environment", "${Environment}", {"id": "m3"}],
+                  [{"expression": "100*m3/(m1+m2)", "label": "DogPercentage", "yAxis": "right", "id": "e1"}]
                 ],
                 "period": 300,
                 "view": "timeSeries",
@@ -99,11 +101,10 @@ Resources:
               "height": 6,
               "properties": {
                 "metrics": [
-                  ["DogNoDog", "Dog", "Environment", "${Environment}", {"id": "m1"}],
                   ["DogNoDog", "Match", "Environment", "${Environment}", {"id": "m2"}],
                   ["DogNoDog", "FalsePositive", "Environment", "${Environment}", {"id": "m3"}],
                   ["DogNoDog", "FalseNegative", "Environment", "${Environment}", {"id": "m4"}],
-                  [{"expression": "100*m2/(m2+m3+m4)", "label": "Match Percentage", "yAxis": "right", "id": "e1"}]
+                  [{"expression": "100*m2/(m2+m3+m4)", "label": "MatchPercentage", "yAxis": "right", "id": "e1"}]
                 ],
                 "period": 300,
                 "view": "timeSeries",
