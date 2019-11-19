@@ -70,7 +70,7 @@ Resources:
       DashboardName: !Sub "DogNoDog-${Environment}"
       DashboardBody: !Sub >
         {
-          "start": "-PT6H",
+          "start": "-PT3H",
           "widgets": [
             {
               "type": "metric",
@@ -103,7 +103,7 @@ Resources:
                   ["DogNoDog", "Match", "Environment", "${Environment}", {"id": "m2"}],
                   ["DogNoDog", "FalsePositive", "Environment", "${Environment}", {"id": "m3"}],
                   ["DogNoDog", "FalseNegative", "Environment", "${Environment}", {"id": "m4"}],
-                  [{"expression": "m2/(m2+m3+m4)", "label": "Match Ratio", "yAxis": "right", "id": "e1"}]
+                  [{"expression": "100*m2/(m2+m3+m4)", "label": "Match Percentage", "yAxis": "right", "id": "e1"}]
                 ],
                 "period": 300,
                 "view": "timeSeries",
