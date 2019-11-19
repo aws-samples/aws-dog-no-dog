@@ -1,8 +1,8 @@
 version: 1.0
-env:
-  variables:
-      # Replace this with an S3 bucket in your account to code artifacts
-      S3_BUCKET: dog-no-dog-artifacts
+# env:
+#   variables:
+#       # Replace this with an S3 bucket in your account to code artifacts
+#       S3_BUCKET: dog-no-dog-artifacts
 backend:
   phases:
     build:

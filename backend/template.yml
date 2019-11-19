@@ -64,6 +64,56 @@ Resources:
   PhotosBucket:
     Type: AWS::S3::Bucket
 
+  Dashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub "DogNoDog-${Environment}"
+      DashboardBody: !Sub >
+        {
+          "start": "-PT6H",
+          "widgets": [
+            {
+              "type": "metric",
+              "x": 0,
+              "y": 0,
+              "width": 12,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  ["Lambda", "Invocations", "FunctionName", "${HasDogFunction}", {"id": "m1"}],
+                  ["Lambda", "Invocations", "FunctionName", "${FeedbackFunction}", {"id": "m2"}]
+                ],
+                "period": 300,
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Sum",
+                "title": "Invocations"
+              }
+            },
+            {
+              "type": "metric",
+              "x": 12,
+              "y": 0,
+              "width": 12,
+              "height": 6,
+              "properties": {
+                "metrics": [
+                  ["DogNoDog", "Dog", "Environment", "${Environment}", {"id": "m1"}],
+                  ["DogNoDog", "Match", "Environment", "${Environment}", {"id": "m2"}],
+                  ["DogNoDog", "FalsePositive", "Environment", "${Environment}", {"id": "m3"}],
+                  ["DogNoDog", "FalseNegative", "Environment", "${Environment}", {"id": "m4"}],
+                  [{"expression": "m2/(m3+m4)", "label": "Match Ratio", "yAxis": "right", "id": "e1"}]
+                ],
+                "period": 300,
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Sum",
+                "title": "Invocations"
+              }
+            }
+          ]
+        }
+
 
 Outputs:
   ApiEndpoint:
