@@ -17,13 +17,6 @@ deploy:
 		--parameter-overrides Environment=$(ENVIRONMENT) \
 		--no-fail-on-empty-changeset
 
-log-processing:
-	aws cloudformation deploy --template-file log-processing.yml \
-		--stack-name $(LOG_PROCESSING_STACK_NAME) \
-		--capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
-		--parameter-overrides LogPrefix=/aws/lambda/$(STACK_NAME) \
-		--no-fail-on-empty-changeset
-
 endpoint:
 	@echo "$(shell aws cloudformation describe-stacks --stack-name $(STACK_NAME)-$(ENVIRONMENT) --query "Stacks[0].Outputs[?OutputKey=='ApiEndpoint'].OutputValue | [0]" | sed 's/"//g')"
 

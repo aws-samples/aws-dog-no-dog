@@ -1,6 +1,7 @@
 import copy
 import json
 import os
+import time
 
 
 DOMAIN_NAME = os.environ.get("DOMAIN_NAME", "*")
@@ -24,14 +25,25 @@ def response(message, status_code=200):
 
 
 def metric(namespace, metric_name, metric_value, metric_unit="None", dimensions={}):
+    retval = copy.deepcopy(dimensions)
     # Always inject 'Environment' as a dimension
-    dimensions = copy.deepcopy(dimensions)
-    dimensions["Environment"] = ENVIRONMENT
+    retval["Environment"] = ENVIRONMENT
 
-    print("MONITORING|{value}|{unit}|{name}|{namespace}|{dimensions}".format(
-        value=metric_value,
-        unit=metric_unit,
-        name=metric_name,
-        namespace=namespace,
-        dimensions=",".join(["{}={}".format(k, v) for k, v in dimensions.items()])
-    ))
+    # Inject the embedded metric for CloudWatch
+    # See https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html
+    retval["_aws"] = {
+        "CloudWatchMetrics": [{
+            "Namespace": namespace,
+            "Dimensions": [list(retval.keys())],
+            "Metrics": [{
+                "Name": metric_name,
+                "Unit": metric_unit
+            }]
+        }],
+        "Timestamp": int(time.time()*1000)
+    }
+
+    # Inject the metric value in the JSON blob
+    retval[metric_name] = metric_value
+
+    print(json.dumps(retval))
