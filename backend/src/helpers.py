@@ -25,6 +25,13 @@ def response(message, status_code=200):
 
 
 def metric(namespace, metric_name, metric_value, metric_unit="None", dimensions={}):
+    """
+    Generate custom metrics
+
+    This works by printing into a specific JSON format documented here:
+    https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html
+    """
+
     retval = copy.deepcopy(dimensions)
     # Always inject 'Environment' as a dimension
     retval["Environment"] = ENVIRONMENT
