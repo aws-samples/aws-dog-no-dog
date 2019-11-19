@@ -87,7 +87,8 @@ Resources:
                 "view": "timeSeries",
                 "stacked": false,
                 "stat": "Sum",
-                "title": "Invocations"
+                "title": "Invocations",
+                "region": "${AWS::Region}"
               }
             },
             {
@@ -108,7 +109,8 @@ Resources:
                 "view": "timeSeries",
                 "stacked": false,
                 "stat": "Sum",
-                "title": "Invocations"
+                "title": "Invocations",
+                "region": "${AWS::Region}"
               }
             }
           ]
