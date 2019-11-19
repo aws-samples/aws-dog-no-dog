@@ -80,8 +80,8 @@ Resources:
               "height": 6,
               "properties": {
                 "metrics": [
-                  ["Lambda", "Invocations", "FunctionName", "${HasDogFunction}", {"id": "m1"}],
-                  ["Lambda", "Invocations", "FunctionName", "${FeedbackFunction}", {"id": "m2"}]
+                  ["AWS/Lambda", "Invocations", "FunctionName", "${HasDogFunction}", {"id": "m1"}],
+                  ["AWS/Lambda", "Invocations", "FunctionName", "${FeedbackFunction}", {"id": "m2"}]
                 ],
                 "period": 300,
                 "view": "timeSeries",
