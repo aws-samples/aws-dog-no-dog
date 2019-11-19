@@ -1,7 +1,6 @@
 S3_BUCKET ?= "dog-no-dog-artifacts"
 STACK_NAME ?= "dog-no-dog"
 ENVIRONMENT ?= "dev"
-LOG_PROCESSING_STACK_NAME ?= "serverless-log-processing"
 
 all: package deploy endpoint
 
