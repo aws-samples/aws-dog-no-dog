@@ -1,29 +1,29 @@
 version: 1.0
-# Uncomment this section when you have build the backend
-# env:
-#   variables:
-#       # Replace this with an S3 bucket in your account to code artifacts
-#       S3_BUCKET: dog-no-dog-artifacts
-# backend:
-#   phases:
-#     build:
-#       commands:
-#         - |
-#           if [ "${AWS_BRANCH}" = "master" ]; then
-#             make -C backend ENVIRONMENT=prod
-#           else
-#             make -C backend ENVIRONMENT=$AWS_BRANCH
-#           fi
-#     postBuild:
-#       commands:
-#         # Set up the API Gateway URL and disable the mock implementation
-#         - |
-#           if [ "${AWS_BRANCH}" = "master" ]; then
-#             echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=prod -C backend endpoint)'"' > .env.production
-#           else
-#             echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=$AWS_BRANCH -C backend endpoint)'"' > .env.production
-#           fi
-#           echo 'VUE_APP_MOCK="disabled"' >> .env.production
+Uncomment this section when you have build the backend
+env:
+  variables:
+      # Replace this with an S3 bucket in your account to code artifacts
+      S3_BUCKET: dog-no-dog-artifacts
+backend:
+  phases:
+    build:
+      commands:
+        - |
+          if [ "${AWS_BRANCH}" = "master" ]; then
+            make -C backend ENVIRONMENT=prod
+          else
+            make -C backend ENVIRONMENT=$AWS_BRANCH
+          fi
+    postBuild:
+      commands:
+        # Set up the API Gateway URL and disable the mock implementation
+        - |
+          if [ "${AWS_BRANCH}" = "master" ]; then
+            echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=prod -C backend endpoint)'"' > .env.production
+          else
+            echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=$AWS_BRANCH -C backend endpoint)'"' > .env.production
+          fi
+          echo 'VUE_APP_MOCK="disabled"' >> .env.production
 frontend:
   phases:
     preBuild:
@@ -43,16 +43,16 @@ test:
   phases:
     preTest:
       commands:
-        # Uncomment this section when you have build the backend
-        # Set up the API Gateway URL and disable the mock implementation
-        # - |
-        #   if [ "${AWS_BRANCH}" = "master" ]; then
-        #     echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=prod -C backend endpoint)'"' > .env.development
-        #   else
-        #     echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=$AWS_BRANCH -C backend endpoint)'"' > .env.development
-        #   fi
-        #   echo 'VUE_APP_MOCK="disabled"' >> .env.development
-        #   echo '{"mock": false}' > cypress.env.json
+        Uncomment this section when you have build the backend
+        Set up the API Gateway URL and disable the mock implementation
+        - |
+          if [ "${AWS_BRANCH}" = "master" ]; then
+            echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=prod -C backend endpoint)'"' > .env.development
+          else
+            echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=$AWS_BRANCH -C backend endpoint)'"' > .env.development
+          fi
+          echo 'VUE_APP_MOCK="disabled"' >> .env.development
+          echo '{"mock": false}' > cypress.env.json
         - npm install
         - npm install wait-on mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
         - 'npm run serve & npx wait-on http://localhost:8080'
