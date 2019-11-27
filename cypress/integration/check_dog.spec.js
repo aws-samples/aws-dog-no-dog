@@ -34,6 +34,9 @@ context("Check dog", function() {
       // After upload
       cy.get("#photo .error").should("not.exist");
 
+      // Check if the picture contains a dog or if the frontend is in 'mock'
+      // mode. In 'mock' mode, all pictures return 'true', regardless of whether
+      // they contain a dog or not.
       if(picture.dog || Cypress.env("mock")) {
         // Check if stamp has the right value
         cy.get("#image .stamp").should("exist");
