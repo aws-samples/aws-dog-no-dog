@@ -1,12 +1,13 @@
 import axios from "axios";
 import { endpoint } from "@/config.js";
+import MockAdapter from "axios-mock-adapter";
 
 // Mocking requests
-// You should comment this section once you have a backend running
-import MockAdapter from "axios-mock-adapter";
-let mock = new MockAdapter(axios, { delayResponse: 1000 });
-mock.onPost("/").reply(200, { dog: true });
-mock.onPost("/feedback").reply(200, { message: "Feedback received" });
+if (process.env.VUE_APP_MOCK == "enabled") {
+  let mock = new MockAdapter(axios, { delayResponse: 1000 });
+  mock.onPost("/").reply(200, { dog: true });
+  mock.onPost("/feedback").reply(200, { message: "Feedback received" });
+}
 // End of the mock implementation section
 
 export function sendPhoto(photo) {
