@@ -1,9 +1,5 @@
 version: 1.0
 Uncomment this section when you have build the backend
-env:
-  variables:
-      # Replace this with an S3 bucket in your account to code artifacts
-      S3_BUCKET: dog-no-dog-artifacts
 backend:
   phases:
     build:
