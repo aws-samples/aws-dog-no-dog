@@ -1,5 +1,4 @@
 import axios from "axios";
-import { endpoint } from "@/config.js";
 import MockAdapter from "axios-mock-adapter";
 
 // Mocking requests
@@ -13,7 +12,7 @@ if (process.env.VUE_APP_MOCK == "enabled") {
 export function sendPhoto(photo) {
   return new Promise(function(resolve, reject) {
     axios
-      .post(endpoint + "/", {
+      .post(process.env.VUE_APP_ENDPOINT + "/", {
         photo: btoa(photo)
       })
       .then(response => {
@@ -30,7 +29,7 @@ export function sendPhoto(photo) {
 export function feedbackPhoto(photo, dog) {
   return new Promise(function(resolve, reject) {
     axios
-      .post(endpoint + "/feedback", {
+      .post(process.env.VUE_APP_ENDPOINT + "/feedback", {
         photo: btoa(photo),
         dog: dog
       })
