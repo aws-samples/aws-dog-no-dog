@@ -52,6 +52,7 @@ test:
         #     echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=$AWS_BRANCH -C backend endpoint)'"' > .env.development
         #   fi
         #   echo 'VUE_APP_MOCK="disabled"' >> .env.development
+        #   echo '{"mock": false}' > cypress.env.json
         - npm install
         - npm install wait-on mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
         - 'npm run serve & npx wait-on http://localhost:8080'
