@@ -1,5 +1,4 @@
 version: 1.0
-Uncomment this section when you have build the backend
 backend:
   phases:
     build:
@@ -39,8 +38,7 @@ test:
   phases:
     preTest:
       commands:
-        Uncomment this section when you have build the backend
-        Set up the API Gateway URL and disable the mock implementation
+        # Set up the API Gateway URL and disable the mock implementation
         - |
           if [ "${AWS_BRANCH}" = "master" ]; then
             echo 'VUE_APP_ENDPOINT="'$(make --quiet ENVIRONMENT=prod -C backend endpoint)'"' > .env.development
