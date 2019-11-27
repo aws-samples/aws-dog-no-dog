@@ -42,7 +42,7 @@ test:
       commands:
         - npm install
         - npm install wait-on mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
-        - 'npm start & npx wait-on http://localhost:8080'
+        - 'npm run serve & npx wait-on http://localhost:8080'
     test:
       commands:
         - 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
