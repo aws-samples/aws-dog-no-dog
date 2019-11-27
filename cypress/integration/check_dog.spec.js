@@ -7,8 +7,7 @@ context("Check dog", function() {
     {fileName: "masza4.jpg", dog: true},
     {fileName: "stella.jpg", dog: true},
     {fileName: "vyyhti.jpg", dog: true},
-    {fileName: "wilbur.jpg", dog: true},
-    {fileName: "no_dog.jpg", dog: false}
+    {fileName: "wilbur.jpg", dog: true}
   ];
 
   pictures.forEach(picture => {
