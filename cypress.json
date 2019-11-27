@@ -1,0 +1,5 @@
+{
+  "waitForAnimations": true,
+  "chromeWebSecurity": false,
+  "baseUrl": "http://localhost:8080"
+}
