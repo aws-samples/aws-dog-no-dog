@@ -13,7 +13,7 @@ The standard frontend implementation uses a mock that will always returns that t
 This repository has two backend folders:
 
 * __[backend](./backend/)__: The backend only contains helpers (Makefile, boilerplate code for your AWS Lambda functions) and it is up to you to implement the backend.
-* __[backend_complete](./backend_complete/)__: A complete implementation of both the frontend and backend for reference. You will also need to uncomment lines in the [amplify.yml](./amplify.yml) file to deploy the backend with AWS Amplify Console.
+* __[backend_complete](./backend_complete/)__: A complete implementation of both the frontend and backend for reference. You will need to overwrite the backend folder with this one and uncomment lines in the [amplify.yml](./amplify.yml) file to deploy the backend with AWS Amplify Console.
 
 As this is meant as a challenge and hands-on workshop with limited help, a few hints are available below but you are encouraged to try things by yourself as much as possible.
 
