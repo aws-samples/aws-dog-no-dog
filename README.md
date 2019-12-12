@@ -10,10 +10,10 @@ With the Dog no Dog application, users can submit a picture and the backend shou
 
 The standard frontend implementation uses a mock that will always returns that there is a dog in the picture.
 
-This repository is comprised of two branches:
+This repository has two backend folders:
 
-* __master__: The backend only contains helpers (Makefile, boilerplate code for your AWS Lambda functions) and it is up to you to implement the backend.
-* __complete__: A complete implementation of both the frontend and backend for reference.
+* __[backend](./backend/)__: The backend only contains helpers (Makefile, boilerplate code for your AWS Lambda functions) and it is up to you to implement the backend.
+* __[backend_complete](./backend_complete/)__: A complete implementation of both the frontend and backend for reference. You will also need to uncomment lines in the [amplify.yml](./amplify.yml) file to deploy the backend with AWS Amplify Console.
 
 As this is meant as a challenge and hands-on workshop with limited help, a few hints are available below but you are encouraged to try things by yourself as much as possible.
 
